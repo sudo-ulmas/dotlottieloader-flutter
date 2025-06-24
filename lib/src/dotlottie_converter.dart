@@ -31,8 +31,7 @@ class DotLottieConverter {
         if (file.name.toLowerCase() == 'manifest.json') {
           try {
             final content = file.content as Uint8List;
-            final jsonString = const Utf8Decoder()
-                .convert(content.toList()); //File.fromRawPath(content).
+            final jsonString = const Utf8Decoder().convert(content.toList()); //File.fromRawPath(content).
             //print(jsonString);
             Map<String, dynamic> jsonData = jsonDecode(jsonString);
             manifest = Manifest.fromJson(jsonData);
@@ -45,7 +44,10 @@ class DotLottieConverter {
           images[file.name.lastSegmentName()] = file.content;
         } else if (file.name.contains(".json")) {
           animations[file.name.lastSegmentName().withoutExt()] = file.content;
-        } else if (file.name.contains(".png") || file.name.contains(".webp")) {
+        } else if (file.name.contains(".png") ||
+            file.name.contains(".webp") ||
+            file.name.contains(".jpeg") ||
+            file.name.contains(".jpg")) {
           images[file.name.lastSegmentName()] = file.content;
         }
       });
